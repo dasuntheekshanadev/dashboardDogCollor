@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+// App.js
 import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import MapComponent from './components/MapComponent';
+import Navbar from './components/NavBar';
+import Home from './components/Home';
+import Footer from './components/Footer';
+import HeartRateComponent from './components/HeartRateComponent';
+import TemperatureHumidityComponent from './components/TemperatureHumidityComponent';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/map' element={<MapComponent />} />
+        </Routes>
+        <div className="container mx-auto mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <HeartRateComponent />
+            <TemperatureHumidityComponent />
+          </div>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
